@@ -7,7 +7,7 @@ var db = require("../models");
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-//retrieve all burgers database and displays back to html
+//retrieve all burgers from the burgers table using sequelize findall method
   db.Burger.findAll({}).then(function(data) {
     var hbsObject = {
       burgers: data
@@ -17,7 +17,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
-//create a new burger and render it back to the html
+//create a new burger using sequelize create method
   db.Burger.create({
     burger_name: req.body.burger_name
   }). then(function(data){
@@ -25,10 +25,9 @@ router.post("/", function(req, res) {
   })
 });
 
-
+// route to update the burger where I am setting devoured: true using the burgers id
 router.put("/:id", function(req, res) {
-  var id = req.params.id;
- //update burgers by requiring id 
+  var id = req.params.id; 
   db.Burger.update({
     devoured: true
   }, {
@@ -42,3 +41,7 @@ router.put("/:id", function(req, res) {
 
 // Export routes for server.js to use.
 module.exports = router;
+
+
+
+

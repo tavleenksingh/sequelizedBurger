@@ -5,21 +5,23 @@ module.exports = function(sequelize, DataTypes){
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
-      },
+    },
     burger_name: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
         len: [1]
         }
-      },
+    },
     devoured: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
-      },
+    },
     date: {
-        type: DataTypes.DATE
-      }
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
+        }
     }, {
     timestamps: false
     });
